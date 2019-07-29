@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syk.publishing.mbg.mapper.LogMapper">
+  <resultMap id="BaseResultMap" type="com.syk.publishing.mbg.model.Log">
+    <id column="logID" jdbcType="BIGINT" property="logid" />
+    <result column="userID" jdbcType="BIGINT" property="userid" />
+    <result column="logTime" jdbcType="TIMESTAMP" property="logtime" />
+    <result column="logLastIPAdress" jdbcType="VARCHAR" property="loglastipadress" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    logID, userID, logTime, logLastIPAdress
+  </sql>
+  <select id="selectByExample" parameterType="com.syk.publishing.mbg.model.LogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Log
+    where logID = #{logid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from Log
+    where logID = #{logid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.syk.publishing.mbg.model.LogExample">
+    delete from Log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.syk.publishing.mbg.model.Log">
+    insert into Log (logID, userID, logTime, 
+      logLastIPAdress)
+    values (#{logid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{logtime,jdbcType=TIMESTAMP}, 
+      #{loglastipadress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Log">
+    insert into Log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logid != null">
+        logID,
+      </if>
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="logtime != null">
+        logTime,
+      </if>
+      <if test="loglastipadress != null">
+        logLastIPAdress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logid != null">
+        #{logid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="logtime != null">
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loglastipadress != null">
+        #{loglastipadress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.syk.publishing.mbg.model.LogExample" resultType="java.lang.Long">
+    select count(*) from Log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Log
+    <set>
+      <if test="record.logid != null">
+        logID = #{record.logid,jdbcType=BIGINT},
+      </if>
+      <if test="record.userid != null">
+        userID = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.logtime != null">
+        logTime = #{record.logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loglastipadress != null">
+        logLastIPAdress = #{record.loglastipadress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Log
+    set logID = #{record.logid,jdbcType=BIGINT},
+      userID = #{record.userid,jdbcType=BIGINT},
+      logTime = #{record.logtime,jdbcType=TIMESTAMP},
+      logLastIPAdress = #{record.loglastipadress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.syk.publishing.mbg.model.Log">
+    update Log
+    <set>
+      <if test="userid != null">
+        userID = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="logtime != null">
+        logTime = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loglastipadress != null">
+        logLastIPAdress = #{loglastipadress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where logID = #{logid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.syk.publishing.mbg.model.Log">
+    update Log
+    set userID = #{userid,jdbcType=BIGINT},
+      logTime = #{logtime,jdbcType=TIMESTAMP},
+      logLastIPAdress = #{loglastipadress,jdbcType=VARCHAR}
+    where logID = #{logid,jdbcType=BIGINT}
+  </update>
+</mapper>
