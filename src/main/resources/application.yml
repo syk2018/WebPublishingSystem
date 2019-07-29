@@ -1,0 +1,36 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:mysql://syk2018.cn:3306/post_bar?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+  redis:
+    host: syk2018.cn
+    database: 0
+    port: 6379
+    password: root
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 3000ms
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+# 自定义redis key
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+    expire:
+      authCode: 300 # 验证码超期时间
+
+
+
