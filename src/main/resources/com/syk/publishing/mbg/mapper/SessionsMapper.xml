@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.syk.publishing.mbg.mapper.SessionsMapper">
   <resultMap id="BaseResultMap" type="com.syk.publishing.mbg.model.Sessions">
-    <id column="sessionID" jdbcType="BIGINT" property="sessionid" />
+    <id column="session_id" jdbcType="BIGINT" property="sessionId" />
     <result column="sessionName" jdbcType="VARCHAR" property="sessionname" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sessionID, sessionName
+    session_id, sessionName
   </sql>
   <select id="selectByExample" parameterType="com.syk.publishing.mbg.model.SessionsExample" resultMap="BaseResultMap">
     select
@@ -84,11 +84,11 @@
     select 
     <include refid="Base_Column_List" />
     from Sessions
-    where sessionID = #{sessionid,jdbcType=BIGINT}
+    where session_id = #{sessionId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from Sessions
-    where sessionID = #{sessionid,jdbcType=BIGINT}
+    where session_id = #{sessionId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.syk.publishing.mbg.model.SessionsExample">
     delete from Sessions
@@ -97,22 +97,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.syk.publishing.mbg.model.Sessions">
-    insert into Sessions (sessionID, sessionName)
-    values (#{sessionid,jdbcType=BIGINT}, #{sessionname,jdbcType=VARCHAR})
+    insert into Sessions (session_id, sessionName)
+    values (#{sessionId,jdbcType=BIGINT}, #{sessionname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Sessions">
     insert into Sessions
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="sessionid != null">
-        sessionID,
+      <if test="sessionId != null">
+        session_id,
       </if>
       <if test="sessionname != null">
         sessionName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="sessionid != null">
-        #{sessionid,jdbcType=BIGINT},
+      <if test="sessionId != null">
+        #{sessionId,jdbcType=BIGINT},
       </if>
       <if test="sessionname != null">
         #{sessionname,jdbcType=VARCHAR},
@@ -128,8 +128,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update Sessions
     <set>
-      <if test="record.sessionid != null">
-        sessionID = #{record.sessionid,jdbcType=BIGINT},
+      <if test="record.sessionId != null">
+        session_id = #{record.sessionId,jdbcType=BIGINT},
       </if>
       <if test="record.sessionname != null">
         sessionName = #{record.sessionname,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update Sessions
-    set sessionID = #{record.sessionid,jdbcType=BIGINT},
+    set session_id = #{record.sessionId,jdbcType=BIGINT},
       sessionName = #{record.sessionname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -154,11 +154,11 @@
         sessionName = #{sessionname,jdbcType=VARCHAR},
       </if>
     </set>
-    where sessionID = #{sessionid,jdbcType=BIGINT}
+    where session_id = #{sessionId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.syk.publishing.mbg.model.Sessions">
     update Sessions
     set sessionName = #{sessionname,jdbcType=VARCHAR}
-    where sessionID = #{sessionid,jdbcType=BIGINT}
+    where session_id = #{sessionId,jdbcType=BIGINT}
   </update>
 </mapper>

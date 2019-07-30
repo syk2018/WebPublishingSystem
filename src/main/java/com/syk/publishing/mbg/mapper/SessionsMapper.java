@@ -10,7 +10,7 @@ public interface SessionsMapper {
 
     int deleteByExample(SessionsExample example);
 
-    int deleteByPrimaryKey(Long sessionid);
+    int deleteByPrimaryKey(Long sessionId);
 
     int insert(Sessions record);
 
@@ -18,7 +18,7 @@ public interface SessionsMapper {
 
     List<Sessions> selectByExample(SessionsExample example);
 
-    Sessions selectByPrimaryKey(Long sessionid);
+    Sessions selectByPrimaryKey(Long sessionId);
 
     int updateByExampleSelective(@Param("record") Sessions record, @Param("example") SessionsExample example);
 

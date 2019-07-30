@@ -10,7 +10,7 @@ public interface LogMapper {
 
     int deleteByExample(LogExample example);
 
-    int deleteByPrimaryKey(Long logid);
+    int deleteByPrimaryKey(Long logId);
 
     int insert(Log record);
 
@@ -18,7 +18,7 @@ public interface LogMapper {
 
     List<Log> selectByExample(LogExample example);
 
-    Log selectByPrimaryKey(Long logid);
+    Log selectByPrimaryKey(Long logId);
 
     int updateByExampleSelective(@Param("record") Log record, @Param("example") LogExample example);
 

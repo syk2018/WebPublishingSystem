@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
 **/
 
 @Configuration
-@MapperScan("com.syk.bar.mbg.mapper")
+@MapperScan("com.syk.publishing.mbg.mapper")
 public class MyBatisConfig {
 }

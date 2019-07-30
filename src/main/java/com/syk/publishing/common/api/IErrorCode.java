@@ -6,6 +6,6 @@ package com.syk.publishing.common.api;
 * @description: 定义结果码接口
 **/
 public interface IErrorCode {
-    long getCode();
+    int getCode();
     String getMessage();
 }

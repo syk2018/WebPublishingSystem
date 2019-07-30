@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.syk.publishing.mbg.mapper.LogMapper">
   <resultMap id="BaseResultMap" type="com.syk.publishing.mbg.model.Log">
-    <id column="logID" jdbcType="BIGINT" property="logid" />
-    <result column="userID" jdbcType="BIGINT" property="userid" />
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="logTime" jdbcType="TIMESTAMP" property="logtime" />
     <result column="logLastIPAdress" jdbcType="VARCHAR" property="loglastipadress" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    logID, userID, logTime, logLastIPAdress
+    log_id, user_id, logTime, logLastIPAdress
   </sql>
   <select id="selectByExample" parameterType="com.syk.publishing.mbg.model.LogExample" resultMap="BaseResultMap">
     select
@@ -86,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from Log
-    where logID = #{logid,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from Log
-    where logID = #{logid,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.syk.publishing.mbg.model.LogExample">
     delete from Log
@@ -99,19 +99,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.syk.publishing.mbg.model.Log">
-    insert into Log (logID, userID, logTime, 
+    insert into Log (log_id, user_id, logTime, 
       logLastIPAdress)
-    values (#{logid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{logtime,jdbcType=TIMESTAMP}, 
+    values (#{logId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{logtime,jdbcType=TIMESTAMP}, 
       #{loglastipadress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Log">
     insert into Log
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="logid != null">
-        logID,
+      <if test="logId != null">
+        log_id,
       </if>
-      <if test="userid != null">
-        userID,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="logtime != null">
         logTime,
@@ -121,11 +121,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="logid != null">
-        #{logid,jdbcType=BIGINT},
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=BIGINT},
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="logtime != null">
         #{logtime,jdbcType=TIMESTAMP},
@@ -144,11 +144,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update Log
     <set>
-      <if test="record.logid != null">
-        logID = #{record.logid,jdbcType=BIGINT},
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=BIGINT},
       </if>
-      <if test="record.userid != null">
-        userID = #{record.userid,jdbcType=BIGINT},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.logtime != null">
         logTime = #{record.logtime,jdbcType=TIMESTAMP},
@@ -163,8 +163,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update Log
-    set logID = #{record.logid,jdbcType=BIGINT},
-      userID = #{record.userid,jdbcType=BIGINT},
+    set log_id = #{record.logId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
       logTime = #{record.logtime,jdbcType=TIMESTAMP},
       logLastIPAdress = #{record.loglastipadress,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -174,8 +174,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.syk.publishing.mbg.model.Log">
     update Log
     <set>
-      <if test="userid != null">
-        userID = #{userid,jdbcType=BIGINT},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="logtime != null">
         logTime = #{logtime,jdbcType=TIMESTAMP},
@@ -184,13 +184,13 @@
         logLastIPAdress = #{loglastipadress,jdbcType=VARCHAR},
       </if>
     </set>
-    where logID = #{logid,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.syk.publishing.mbg.model.Log">
     update Log
-    set userID = #{userid,jdbcType=BIGINT},
+    set user_id = #{userId,jdbcType=BIGINT},
       logTime = #{logtime,jdbcType=TIMESTAMP},
       logLastIPAdress = #{loglastipadress,jdbcType=VARCHAR}
-    where logID = #{logid,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
   </update>
 </mapper>

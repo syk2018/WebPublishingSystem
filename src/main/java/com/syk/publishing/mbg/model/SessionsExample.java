@@ -104,63 +104,63 @@ public class SessionsExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andSessionidIsNull() {
-            addCriterion("sessionID is null");
+        public Criteria andSessionIdIsNull() {
+            addCriterion("session_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidIsNotNull() {
-            addCriterion("sessionID is not null");
+        public Criteria andSessionIdIsNotNull() {
+            addCriterion("session_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidEqualTo(Long value) {
-            addCriterion("sessionID =", value, "sessionid");
+        public Criteria andSessionIdEqualTo(Long value) {
+            addCriterion("session_id =", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidNotEqualTo(Long value) {
-            addCriterion("sessionID <>", value, "sessionid");
+        public Criteria andSessionIdNotEqualTo(Long value) {
+            addCriterion("session_id <>", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidGreaterThan(Long value) {
-            addCriterion("sessionID >", value, "sessionid");
+        public Criteria andSessionIdGreaterThan(Long value) {
+            addCriterion("session_id >", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidGreaterThanOrEqualTo(Long value) {
-            addCriterion("sessionID >=", value, "sessionid");
+        public Criteria andSessionIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("session_id >=", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidLessThan(Long value) {
-            addCriterion("sessionID <", value, "sessionid");
+        public Criteria andSessionIdLessThan(Long value) {
+            addCriterion("session_id <", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidLessThanOrEqualTo(Long value) {
-            addCriterion("sessionID <=", value, "sessionid");
+        public Criteria andSessionIdLessThanOrEqualTo(Long value) {
+            addCriterion("session_id <=", value, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidIn(List<Long> values) {
-            addCriterion("sessionID in", values, "sessionid");
+        public Criteria andSessionIdIn(List<Long> values) {
+            addCriterion("session_id in", values, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidNotIn(List<Long> values) {
-            addCriterion("sessionID not in", values, "sessionid");
+        public Criteria andSessionIdNotIn(List<Long> values) {
+            addCriterion("session_id not in", values, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidBetween(Long value1, Long value2) {
-            addCriterion("sessionID between", value1, value2, "sessionid");
+        public Criteria andSessionIdBetween(Long value1, Long value2) {
+            addCriterion("session_id between", value1, value2, "sessionId");
             return (Criteria) this;
         }
 
-        public Criteria andSessionidNotBetween(Long value1, Long value2) {
-            addCriterion("sessionID not between", value1, value2, "sessionid");
+        public Criteria andSessionIdNotBetween(Long value1, Long value2) {
+            addCriterion("session_id not between", value1, value2, "sessionId");
             return (Criteria) this;
         }
 

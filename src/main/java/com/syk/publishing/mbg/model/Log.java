@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class Log implements Serializable {
     @ApiModelProperty(value = "log_ID")
-    private Long logid;
+    private Long logId;
 
     @ApiModelProperty(value = "user_ID")
-    private Long userid;
+    private Long userId;
 
     @ApiModelProperty(value = "log_Time")
     private Date logtime;
@@ -19,20 +19,20 @@ public class Log implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getLogid() {
-        return logid;
+    public Long getLogId() {
+        return logId;
     }
 
-    public void setLogid(Long logid) {
-        this.logid = logid;
+    public void setLogId(Long logId) {
+        this.logId = logId;
     }
 
-    public Long getUserid() {
-        return userid;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Date getLogtime() {
@@ -57,8 +57,8 @@ public class Log implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", logid=").append(logid);
-        sb.append(", userid=").append(userid);
+        sb.append(", logId=").append(logId);
+        sb.append(", userId=").append(userId);
         sb.append(", logtime=").append(logtime);
         sb.append(", loglastipadress=").append(loglastipadress);
         sb.append(", serialVersionUID=").append(serialVersionUID);

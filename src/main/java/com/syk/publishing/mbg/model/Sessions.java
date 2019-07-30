@@ -5,19 +5,19 @@ import java.io.Serializable;
 
 public class Sessions implements Serializable {
     @ApiModelProperty(value = "session_ID")
-    private Long sessionid;
+    private Long sessionId;
 
     @ApiModelProperty(value = "session_Name")
     private String sessionname;
 
     private static final long serialVersionUID = 1L;
 
-    public Long getSessionid() {
-        return sessionid;
+    public Long getSessionId() {
+        return sessionId;
     }
 
-    public void setSessionid(Long sessionid) {
-        this.sessionid = sessionid;
+    public void setSessionId(Long sessionId) {
+        this.sessionId = sessionId;
     }
 
     public String getSessionname() {
@@ -34,7 +34,7 @@ public class Sessions implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", sessionid=").append(sessionid);
+        sb.append(", sessionId=").append(sessionId);
         sb.append(", sessionname=").append(sessionname);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

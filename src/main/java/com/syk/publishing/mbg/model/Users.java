@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Users implements Serializable {
     @ApiModelProperty(value = "user_ID")
-    private Long userid;
+    private Long userId;
 
     @ApiModelProperty(value = "user_Name")
     private String username;
@@ -28,12 +28,12 @@ public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getUserid() {
-        return userid;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -90,7 +90,7 @@ public class Users implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", userid=").append(userid);
+        sb.append(", userId=").append(userId);
         sb.append(", username=").append(username);
         sb.append(", userpwd=").append(userpwd);
         sb.append(", useravatar=").append(useravatar);

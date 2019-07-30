@@ -24,7 +24,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包下controller生成API文档
-                .apis(RequestHandlerSelectors.basePackage("com.syk.bar.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.syk.publishing.controller"))
                 //为有@Api注解的Controller生成API文档
 //                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                 //为有@ApiOperation注解的方法生成API文档
@@ -35,8 +35,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("酷吧项目api接口说明文档")
-                .description("Post Bar")
+                .title("Web publishing system api docs")
+                .description("Sorn")
                 .contact("syk")
                 .version("1.0")
                 .build();
