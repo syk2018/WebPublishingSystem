@@ -26,6 +26,9 @@ public class Users implements Serializable {
     @ApiModelProperty(value = "user_IsManager")
     private Integer userismanager;
 
+    @ApiModelProperty(value = "user_nickname")
+    private String usernickname;
+
     private static final long serialVersionUID = 1L;
 
     public Long getUserId() {
@@ -84,6 +87,14 @@ public class Users implements Serializable {
         this.userismanager = userismanager;
     }
 
+    public String getUsernickname() {
+        return usernickname;
+    }
+
+    public void setUsernickname(String usernickname) {
+        this.usernickname = usernickname;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -97,6 +108,7 @@ public class Users implements Serializable {
         sb.append(", userdescription=").append(userdescription);
         sb.append(", userregdate=").append(userregdate);
         sb.append(", userismanager=").append(userismanager);
+        sb.append(", usernickname=").append(usernickname);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

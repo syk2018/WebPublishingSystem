@@ -8,6 +8,7 @@ import com.syk.publishing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,6 +39,8 @@ public class UserServiceImpl implements UserService {
     public int createUser(Users user) {
         List<Users> result = getUserByUsername(user);
         if(result.isEmpty()) {
+            user.setUserregdate(new Date());
+            user.setUserismanager(0);
             return usersMapper.insertSelective(user);
         }
 

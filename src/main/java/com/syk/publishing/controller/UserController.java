@@ -2,7 +2,9 @@ package com.syk.publishing.controller;
 
 import com.syk.publishing.common.api.CommonResult;
 import com.syk.publishing.common.api.ResultCode;
+import com.syk.publishing.mbg.model.Log;
 import com.syk.publishing.mbg.model.Users;
+import com.syk.publishing.service.LogService;
 import com.syk.publishing.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +28,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LogService logService;
+
     @ApiOperation("Get user by id")
     @RequestMapping(value = "getUserById", method = RequestMethod.GET)
     @ResponseBody
@@ -34,9 +41,14 @@ public class UserController {
     @ApiOperation("Login")
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<List<Users>> login(@RequestBody Users user) {
+    public CommonResult<List<Users>> login(@RequestBody Users user, HttpServletRequest request) {
         List<Users> result = userService.login(user);
         if(!result.isEmpty()) {
+            Log log = new Log();
+            log.setLoglastipadress(logService.getIp(request));
+            log.setLogtime(new Date());
+            log.setUserId(result.get(0).getUserId());
+            logService.addLog(log);
             return CommonResult.success(result);
         }
 

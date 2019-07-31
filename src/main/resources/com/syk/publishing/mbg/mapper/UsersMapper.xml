@@ -9,6 +9,7 @@
     <result column="userDescription" jdbcType="VARCHAR" property="userdescription" />
     <result column="userRegDate" jdbcType="TIMESTAMP" property="userregdate" />
     <result column="userIsManager" jdbcType="INTEGER" property="userismanager" />
+    <result column="userNickname" jdbcType="VARCHAR" property="usernickname" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, userName, userPwd, userAvatar, userDescription, userRegDate, userIsManager
+    user_id, userName, userPwd, userAvatar, userDescription, userRegDate, userIsManager, 
+    userNickname
   </sql>
   <select id="selectByExample" parameterType="com.syk.publishing.mbg.model.UsersExample" resultMap="BaseResultMap">
     select
@@ -104,10 +106,10 @@
   <insert id="insert" parameterType="com.syk.publishing.mbg.model.Users">
     insert into Users (user_id, userName, userPwd, 
       userAvatar, userDescription, userRegDate, 
-      userIsManager)
+      userIsManager, userNickname)
     values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{userpwd,jdbcType=VARCHAR}, 
       #{useravatar,jdbcType=BIGINT}, #{userdescription,jdbcType=VARCHAR}, #{userregdate,jdbcType=TIMESTAMP}, 
-      #{userismanager,jdbcType=INTEGER})
+      #{userismanager,jdbcType=INTEGER}, #{usernickname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Users">
     insert into Users
@@ -133,6 +135,9 @@
       <if test="userismanager != null">
         userIsManager,
       </if>
+      <if test="usernickname != null">
+        userNickname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -155,6 +160,9 @@
       </if>
       <if test="userismanager != null">
         #{userismanager,jdbcType=INTEGER},
+      </if>
+      <if test="usernickname != null">
+        #{usernickname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +196,9 @@
       <if test="record.userismanager != null">
         userIsManager = #{record.userismanager,jdbcType=INTEGER},
       </if>
+      <if test="record.usernickname != null">
+        userNickname = #{record.usernickname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +212,8 @@
       userAvatar = #{record.useravatar,jdbcType=BIGINT},
       userDescription = #{record.userdescription,jdbcType=VARCHAR},
       userRegDate = #{record.userregdate,jdbcType=TIMESTAMP},
-      userIsManager = #{record.userismanager,jdbcType=INTEGER}
+      userIsManager = #{record.userismanager,jdbcType=INTEGER},
+      userNickname = #{record.usernickname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +239,9 @@
       <if test="userismanager != null">
         userIsManager = #{userismanager,jdbcType=INTEGER},
       </if>
+      <if test="usernickname != null">
+        userNickname = #{usernickname,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
@@ -237,7 +252,8 @@
       userAvatar = #{useravatar,jdbcType=BIGINT},
       userDescription = #{userdescription,jdbcType=VARCHAR},
       userRegDate = #{userregdate,jdbcType=TIMESTAMP},
-      userIsManager = #{userismanager,jdbcType=INTEGER}
+      userIsManager = #{userismanager,jdbcType=INTEGER},
+      userNickname = #{usernickname,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
 </mapper>

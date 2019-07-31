@@ -554,6 +554,76 @@ public class UsersExample {
             addCriterion("userIsManager not between", value1, value2, "userismanager");
             return (Criteria) this;
         }
+
+        public Criteria andUsernicknameIsNull() {
+            addCriterion("userNickname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameIsNotNull() {
+            addCriterion("userNickname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameEqualTo(String value) {
+            addCriterion("userNickname =", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameNotEqualTo(String value) {
+            addCriterion("userNickname <>", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameGreaterThan(String value) {
+            addCriterion("userNickname >", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameGreaterThanOrEqualTo(String value) {
+            addCriterion("userNickname >=", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameLessThan(String value) {
+            addCriterion("userNickname <", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameLessThanOrEqualTo(String value) {
+            addCriterion("userNickname <=", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameLike(String value) {
+            addCriterion("userNickname like", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameNotLike(String value) {
+            addCriterion("userNickname not like", value, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameIn(List<String> values) {
+            addCriterion("userNickname in", values, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameNotIn(List<String> values) {
+            addCriterion("userNickname not in", values, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameBetween(String value1, String value2) {
+            addCriterion("userNickname between", value1, value2, "usernickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsernicknameNotBetween(String value1, String value2) {
+            addCriterion("userNickname not between", value1, value2, "usernickname");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
