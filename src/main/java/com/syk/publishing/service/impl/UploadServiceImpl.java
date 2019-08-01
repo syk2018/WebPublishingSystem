@@ -11,49 +11,57 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UploadServiceImpl implements UploadService {
     private static Logger logger = LoggerFactory.getLogger(UploadServiceImpl.class);
     /**
-     * @param multipartFile
+     * @param multipartFiles
      * @return
      * @throws IOException
      */
-    public File saveFile(MultipartFile multipartFile) throws IOException {
-        String[] fileAbsolutePath={};
-        String fileName=multipartFile.getOriginalFilename();
-        String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-        byte[] file_buff = null;
-        InputStream inputStream=multipartFile.getInputStream();
-        if(inputStream!=null){
-            int len1 = inputStream.available();
-            file_buff = new byte[len1];
-            inputStream.read(file_buff);
-        }
-        inputStream.close();
-        FastDFSFile file = new FastDFSFile();
-        file.setName(fileName);
-        file.setContent(file_buff);
-        file.setExt(ext);
+    public List<File> saveFile(MultipartFile[] multipartFiles) throws IOException {
+        List<File> files = new ArrayList<File>();
 
-        try {
-            fileAbsolutePath = FastDFSClient.upload(file);  //upload to fastdfs
-        } catch (Exception e) {
-            logger.error("upload file Exception!",e);
-        }
-        if (fileAbsolutePath==null) {
-            logger.error("upload file failed,please upload again!");
-        }
-        String path=FastDFSClient.getTrackerUrl()+fileAbsolutePath[0]+ "/"+fileAbsolutePath[1];
+        for(int i = 0; i< multipartFiles.length;i++) {
+            String[] fileAbsolutePath={};
+            String fileName=multipartFiles[i].getOriginalFilename();
+            String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+            byte[] file_buff = null;
+            InputStream inputStream=multipartFiles[i].getInputStream();
+            if(inputStream!=null){
+                int len1 = inputStream.available();
+                file_buff = new byte[len1];
+                inputStream.read(file_buff);
+            }
+            inputStream.close();
+            FastDFSFile file = new FastDFSFile();
+            file.setName(fileName);
+            file.setContent(file_buff);
+            file.setExt(ext);
 
-        File result = new File();
-        result.setFileurl(path);
-        result.setGroupname(fileAbsolutePath[0]);
-        result.setFilename(fileAbsolutePath[1]);
-        result.setType("pic");
+            try {
+                fileAbsolutePath = FastDFSClient.upload(file);  //upload to fastdfs
+            } catch (Exception e) {
+                logger.error("upload file Exception!",e);
+            }
+            if (fileAbsolutePath==null) {
+                logger.error("upload file failed,please upload again!");
+            }
+            String path=FastDFSClient.getTrackerUrl()+fileAbsolutePath[0]+ "/"+fileAbsolutePath[1];
 
-        return result;
+            File result = new File();
+            result.setFileurl(path);
+            result.setGroupname(fileAbsolutePath[0]);
+            result.setFilename(fileAbsolutePath[1]);
+            result.setType("pic");
+
+            files.add(result);
+        }
+
+        return files;
     }
 
     @Override

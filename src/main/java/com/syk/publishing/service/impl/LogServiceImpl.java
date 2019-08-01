@@ -67,8 +67,6 @@ public class LogServiceImpl implements LogService {
             ip = request.getRemoteAddr();
         }
 
-        System.out.println(ip);
-
         return ip;
     }
 }

@@ -7,6 +7,8 @@ import com.syk.publishing.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author: shaoyikun
  * @Date: 2019-07-31
@@ -25,8 +27,26 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public List<File> getFileByName(String name) {
+        FileExample fileExample = new FileExample();
+        fileExample.createCriteria().andFilenameEqualTo(name);
+        return fileMapper.selectByExample(fileExample);
+    }
+
+    @Override
     public int addFile(File file) {
         return fileMapper.insertSelective(file);
+    }
+
+    @Override
+    public int[] addFiles(List<File> files) {
+        int[] result = new int[files.size()];
+
+        for(int i = 0; i< files.size(); i++) {
+            result[i] = fileMapper.insertSelective(files.get(i));
+        }
+
+        return result;
     }
 
     @Override

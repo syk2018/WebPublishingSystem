@@ -1,17 +1,19 @@
 package com.syk.publishing.controller;
 
 import com.syk.publishing.common.api.CommonResult;
+import com.syk.publishing.common.api.RichTextEditorPicUploadResult;
 import com.syk.publishing.mbg.model.File;
 import com.syk.publishing.service.FileService;
 import com.syk.publishing.service.UploadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: shaoyikun
@@ -32,15 +34,39 @@ public class UploadController {
     @ApiOperation("Upload files")
     @ResponseBody
     @PostMapping(value = "upload")
-    public CommonResult<File> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        if (file.isEmpty()) {
+    public CommonResult<List<File>> upload(@RequestParam("files") MultipartFile[] files) throws IOException {
+        if (files.length == 0) {
             return CommonResult.failed("Upload failed");
         }
 
         else {
-            File result = uploadService.saveFile(file);
-            fileService.addFile(result);
+            List<File> result = uploadService.saveFile(files);
+            fileService.addFiles(result);
             return CommonResult.success(result);
+        }
+    }
+
+    @ApiOperation("Upload pictures for rich text editor and return results in a specific format")
+    @ResponseBody
+    @PostMapping(value = "uploadPic")
+    public RichTextEditorPicUploadResult uploadPic(@RequestParam("files") MultipartFile[] files) throws IOException {
+        if (files.length == 0) {
+            RichTextEditorPicUploadResult result = new RichTextEditorPicUploadResult();
+            result.setErrno(1);
+            return result;
+        }
+        else {
+            List<File> temp = uploadService.saveFile(files);
+            fileService.addFiles(temp);
+            RichTextEditorPicUploadResult result = new RichTextEditorPicUploadResult();
+            result.setErrno(0);
+            List<String> url = new ArrayList<String>();
+            for(int i = 0; i < temp.size(); i++) {
+                url.add(temp.get(i).getFileurl());
+            }
+            result.setData(url);
+
+            return result;
         }
     }
 
@@ -50,6 +76,6 @@ public class UploadController {
     public CommonResult delete(@RequestBody File file) throws Exception {
         uploadService.deleteFile(file);
         fileService.deleteFile(file.getFileId());
-        return CommonResult.success(null,"Upload success");
+        return CommonResult.success(null,"Delete success");
     }
 }

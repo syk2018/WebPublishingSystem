@@ -624,6 +624,126 @@ public class UsersExample {
             addCriterion("userNickname not between", value1, value2, "usernickname");
             return (Criteria) this;
         }
+
+        public Criteria andUserattentionIsNull() {
+            addCriterion("userAttention is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionIsNotNull() {
+            addCriterion("userAttention is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionEqualTo(Integer value) {
+            addCriterion("userAttention =", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionNotEqualTo(Integer value) {
+            addCriterion("userAttention <>", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionGreaterThan(Integer value) {
+            addCriterion("userAttention >", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("userAttention >=", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionLessThan(Integer value) {
+            addCriterion("userAttention <", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionLessThanOrEqualTo(Integer value) {
+            addCriterion("userAttention <=", value, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionIn(List<Integer> values) {
+            addCriterion("userAttention in", values, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionNotIn(List<Integer> values) {
+            addCriterion("userAttention not in", values, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionBetween(Integer value1, Integer value2) {
+            addCriterion("userAttention between", value1, value2, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserattentionNotBetween(Integer value1, Integer value2) {
+            addCriterion("userAttention not between", value1, value2, "userattention");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansIsNull() {
+            addCriterion("userFans is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansIsNotNull() {
+            addCriterion("userFans is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansEqualTo(Integer value) {
+            addCriterion("userFans =", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansNotEqualTo(Integer value) {
+            addCriterion("userFans <>", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansGreaterThan(Integer value) {
+            addCriterion("userFans >", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansGreaterThanOrEqualTo(Integer value) {
+            addCriterion("userFans >=", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansLessThan(Integer value) {
+            addCriterion("userFans <", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansLessThanOrEqualTo(Integer value) {
+            addCriterion("userFans <=", value, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansIn(List<Integer> values) {
+            addCriterion("userFans in", values, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansNotIn(List<Integer> values) {
+            addCriterion("userFans not in", values, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansBetween(Integer value1, Integer value2) {
+            addCriterion("userFans between", value1, value2, "userfans");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserfansNotBetween(Integer value1, Integer value2) {
+            addCriterion("userFans not between", value1, value2, "userfans");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

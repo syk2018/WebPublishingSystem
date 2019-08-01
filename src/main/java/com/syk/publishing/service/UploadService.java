@@ -4,10 +4,11 @@ import com.syk.publishing.mbg.model.File;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface UploadService {
 
-    File saveFile(MultipartFile multipartFile) throws IOException;
+    List<File> saveFile(MultipartFile[] multipartFiles) throws IOException;
 
     void deleteFile(File file) throws Exception;
 }

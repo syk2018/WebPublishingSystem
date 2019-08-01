@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.syk.publishing.mbg.mapper.ArticleMapper">
   <resultMap id="BaseResultMap" type="com.syk.publishing.mbg.model.Article">
-    <id column="articleID" jdbcType="BIGINT" property="articleid" />
-    <result column="articleSID" jdbcType="BIGINT" property="articlesid" />
-    <result column="articleUID" jdbcType="BIGINT" property="articleuid" />
+    <id column="articleId" jdbcType="BIGINT" property="articleid" />
+    <result column="articleSessionId" jdbcType="BIGINT" property="articlesessionid" />
+    <result column="articleUserId" jdbcType="BIGINT" property="articleuserid" />
     <result column="articleTitle" jdbcType="VARCHAR" property="articletitle" />
     <result column="articleTime" jdbcType="TIMESTAMP" property="articletime" />
     <result column="articleClickCount" jdbcType="INTEGER" property="articleclickcount" />
@@ -13,6 +13,7 @@
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.syk.publishing.mbg.model.Article">
     <result column="articleContents" jdbcType="LONGVARCHAR" property="articlecontents" />
+    <result column="articleContentsHTML" jdbcType="LONGVARCHAR" property="articlecontentshtml" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,11 +74,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    articleID, articleSID, articleUID, articleTitle, articleTime, articleClickCount, 
+    articleId, articleSessionId, articleUserId, articleTitle, articleTime, articleClickCount, 
     articleConsentient, articleLastCommentTime
   </sql>
   <sql id="Blob_Column_List">
-    articleContents
+    articleContents, articleContentsHTML
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.syk.publishing.mbg.model.ArticleExample" resultMap="ResultMapWithBLOBs">
     select
@@ -115,11 +116,11 @@
     ,
     <include refid="Blob_Column_List" />
     from Article
-    where articleID = #{articleid,jdbcType=BIGINT}
+    where articleId = #{articleid,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from Article
-    where articleID = #{articleid,jdbcType=BIGINT}
+    where articleId = #{articleid,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.syk.publishing.mbg.model.ArticleExample">
     delete from Article
@@ -128,26 +129,28 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.syk.publishing.mbg.model.Article">
-    insert into Article (articleID, articleSID, articleUID, 
+    insert into Article (articleId, articleSessionId, articleUserId, 
       articleTitle, articleTime, articleClickCount, 
       articleConsentient, articleLastCommentTime, 
-      articleContents)
-    values (#{articleid,jdbcType=BIGINT}, #{articlesid,jdbcType=BIGINT}, #{articleuid,jdbcType=BIGINT}, 
+      articleContents, articleContentsHTML
+      )
+    values (#{articleid,jdbcType=BIGINT}, #{articlesessionid,jdbcType=BIGINT}, #{articleuserid,jdbcType=BIGINT}, 
       #{articletitle,jdbcType=VARCHAR}, #{articletime,jdbcType=TIMESTAMP}, #{articleclickcount,jdbcType=INTEGER}, 
       #{articleconsentient,jdbcType=INTEGER}, #{articlelastcommenttime,jdbcType=TIMESTAMP}, 
-      #{articlecontents,jdbcType=LONGVARCHAR})
+      #{articlecontents,jdbcType=LONGVARCHAR}, #{articlecontentshtml,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Article">
     insert into Article
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleid != null">
-        articleID,
+        articleId,
       </if>
-      <if test="articlesid != null">
-        articleSID,
+      <if test="articlesessionid != null">
+        articleSessionId,
       </if>
-      <if test="articleuid != null">
-        articleUID,
+      <if test="articleuserid != null">
+        articleUserId,
       </if>
       <if test="articletitle != null">
         articleTitle,
@@ -167,16 +170,19 @@
       <if test="articlecontents != null">
         articleContents,
       </if>
+      <if test="articlecontentshtml != null">
+        articleContentsHTML,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="articleid != null">
         #{articleid,jdbcType=BIGINT},
       </if>
-      <if test="articlesid != null">
-        #{articlesid,jdbcType=BIGINT},
+      <if test="articlesessionid != null">
+        #{articlesessionid,jdbcType=BIGINT},
       </if>
-      <if test="articleuid != null">
-        #{articleuid,jdbcType=BIGINT},
+      <if test="articleuserid != null">
+        #{articleuserid,jdbcType=BIGINT},
       </if>
       <if test="articletitle != null">
         #{articletitle,jdbcType=VARCHAR},
@@ -196,6 +202,9 @@
       <if test="articlecontents != null">
         #{articlecontents,jdbcType=LONGVARCHAR},
       </if>
+      <if test="articlecontentshtml != null">
+        #{articlecontentshtml,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.syk.publishing.mbg.model.ArticleExample" resultType="java.lang.Long">
@@ -208,13 +217,13 @@
     update Article
     <set>
       <if test="record.articleid != null">
-        articleID = #{record.articleid,jdbcType=BIGINT},
+        articleId = #{record.articleid,jdbcType=BIGINT},
       </if>
-      <if test="record.articlesid != null">
-        articleSID = #{record.articlesid,jdbcType=BIGINT},
+      <if test="record.articlesessionid != null">
+        articleSessionId = #{record.articlesessionid,jdbcType=BIGINT},
       </if>
-      <if test="record.articleuid != null">
-        articleUID = #{record.articleuid,jdbcType=BIGINT},
+      <if test="record.articleuserid != null">
+        articleUserId = #{record.articleuserid,jdbcType=BIGINT},
       </if>
       <if test="record.articletitle != null">
         articleTitle = #{record.articletitle,jdbcType=VARCHAR},
@@ -234,6 +243,9 @@
       <if test="record.articlecontents != null">
         articleContents = #{record.articlecontents,jdbcType=LONGVARCHAR},
       </if>
+      <if test="record.articlecontentshtml != null">
+        articleContentsHTML = #{record.articlecontentshtml,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,24 +253,25 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update Article
-    set articleID = #{record.articleid,jdbcType=BIGINT},
-      articleSID = #{record.articlesid,jdbcType=BIGINT},
-      articleUID = #{record.articleuid,jdbcType=BIGINT},
+    set articleId = #{record.articleid,jdbcType=BIGINT},
+      articleSessionId = #{record.articlesessionid,jdbcType=BIGINT},
+      articleUserId = #{record.articleuserid,jdbcType=BIGINT},
       articleTitle = #{record.articletitle,jdbcType=VARCHAR},
       articleTime = #{record.articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{record.articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{record.articleconsentient,jdbcType=INTEGER},
       articleLastCommentTime = #{record.articlelastcommenttime,jdbcType=TIMESTAMP},
-      articleContents = #{record.articlecontents,jdbcType=LONGVARCHAR}
+      articleContents = #{record.articlecontents,jdbcType=LONGVARCHAR},
+      articleContentsHTML = #{record.articlecontentshtml,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
     update Article
-    set articleID = #{record.articleid,jdbcType=BIGINT},
-      articleSID = #{record.articlesid,jdbcType=BIGINT},
-      articleUID = #{record.articleuid,jdbcType=BIGINT},
+    set articleId = #{record.articleid,jdbcType=BIGINT},
+      articleSessionId = #{record.articlesessionid,jdbcType=BIGINT},
+      articleUserId = #{record.articleuserid,jdbcType=BIGINT},
       articleTitle = #{record.articletitle,jdbcType=VARCHAR},
       articleTime = #{record.articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{record.articleclickcount,jdbcType=INTEGER},
@@ -271,11 +284,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.syk.publishing.mbg.model.Article">
     update Article
     <set>
-      <if test="articlesid != null">
-        articleSID = #{articlesid,jdbcType=BIGINT},
+      <if test="articlesessionid != null">
+        articleSessionId = #{articlesessionid,jdbcType=BIGINT},
       </if>
-      <if test="articleuid != null">
-        articleUID = #{articleuid,jdbcType=BIGINT},
+      <if test="articleuserid != null">
+        articleUserId = #{articleuserid,jdbcType=BIGINT},
       </if>
       <if test="articletitle != null">
         articleTitle = #{articletitle,jdbcType=VARCHAR},
@@ -295,30 +308,34 @@
       <if test="articlecontents != null">
         articleContents = #{articlecontents,jdbcType=LONGVARCHAR},
       </if>
+      <if test="articlecontentshtml != null">
+        articleContentsHTML = #{articlecontentshtml,jdbcType=LONGVARCHAR},
+      </if>
     </set>
-    where articleID = #{articleid,jdbcType=BIGINT}
+    where articleId = #{articleid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.syk.publishing.mbg.model.Article">
     update Article
-    set articleSID = #{articlesid,jdbcType=BIGINT},
-      articleUID = #{articleuid,jdbcType=BIGINT},
+    set articleSessionId = #{articlesessionid,jdbcType=BIGINT},
+      articleUserId = #{articleuserid,jdbcType=BIGINT},
       articleTitle = #{articletitle,jdbcType=VARCHAR},
       articleTime = #{articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{articleconsentient,jdbcType=INTEGER},
       articleLastCommentTime = #{articlelastcommenttime,jdbcType=TIMESTAMP},
-      articleContents = #{articlecontents,jdbcType=LONGVARCHAR}
-    where articleID = #{articleid,jdbcType=BIGINT}
+      articleContents = #{articlecontents,jdbcType=LONGVARCHAR},
+      articleContentsHTML = #{articlecontentshtml,jdbcType=LONGVARCHAR}
+    where articleId = #{articleid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.syk.publishing.mbg.model.Article">
     update Article
-    set articleSID = #{articlesid,jdbcType=BIGINT},
-      articleUID = #{articleuid,jdbcType=BIGINT},
+    set articleSessionId = #{articlesessionid,jdbcType=BIGINT},
+      articleUserId = #{articleuserid,jdbcType=BIGINT},
       articleTitle = #{articletitle,jdbcType=VARCHAR},
       articleTime = #{articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{articleconsentient,jdbcType=INTEGER},
       articleLastCommentTime = #{articlelastcommenttime,jdbcType=TIMESTAMP}
-    where articleID = #{articleid,jdbcType=BIGINT}
+    where articleId = #{articleid,jdbcType=BIGINT}
   </update>
 </mapper>

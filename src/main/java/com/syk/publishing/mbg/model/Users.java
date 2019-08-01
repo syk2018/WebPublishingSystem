@@ -29,6 +29,10 @@ public class Users implements Serializable {
     @ApiModelProperty(value = "user_nickname")
     private String usernickname;
 
+    private Integer userattention;
+
+    private Integer userfans;
+
     private static final long serialVersionUID = 1L;
 
     public Long getUserId() {
@@ -95,6 +99,22 @@ public class Users implements Serializable {
         this.usernickname = usernickname;
     }
 
+    public Integer getUserattention() {
+        return userattention;
+    }
+
+    public void setUserattention(Integer userattention) {
+        this.userattention = userattention;
+    }
+
+    public Integer getUserfans() {
+        return userfans;
+    }
+
+    public void setUserfans(Integer userfans) {
+        this.userfans = userfans;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -109,6 +129,8 @@ public class Users implements Serializable {
         sb.append(", userregdate=").append(userregdate);
         sb.append(", userismanager=").append(userismanager);
         sb.append(", usernickname=").append(usernickname);
+        sb.append(", userattention=").append(userattention);
+        sb.append(", userfans=").append(userfans);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

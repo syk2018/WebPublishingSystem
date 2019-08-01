@@ -9,10 +9,10 @@ public class Article implements Serializable {
     private Long articleid;
 
     @ApiModelProperty(value = "article_ ID of sessions")
-    private Long articlesid;
+    private Long articlesessionid;
 
     @ApiModelProperty(value = "article_ ID of users")
-    private Long articleuid;
+    private Long articleuserid;
 
     @ApiModelProperty(value = "artcle_Title")
     private String articletitle;
@@ -32,6 +32,9 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "article_Contents")
     private String articlecontents;
 
+    @ApiModelProperty(value = "article_Contents_With_HTML")
+    private String articlecontentshtml;
+
     private static final long serialVersionUID = 1L;
 
     public Long getArticleid() {
@@ -42,20 +45,20 @@ public class Article implements Serializable {
         this.articleid = articleid;
     }
 
-    public Long getArticlesid() {
-        return articlesid;
+    public Long getArticlesessionid() {
+        return articlesessionid;
     }
 
-    public void setArticlesid(Long articlesid) {
-        this.articlesid = articlesid;
+    public void setArticlesessionid(Long articlesessionid) {
+        this.articlesessionid = articlesessionid;
     }
 
-    public Long getArticleuid() {
-        return articleuid;
+    public Long getArticleuserid() {
+        return articleuserid;
     }
 
-    public void setArticleuid(Long articleuid) {
-        this.articleuid = articleuid;
+    public void setArticleuserid(Long articleuserid) {
+        this.articleuserid = articleuserid;
     }
 
     public String getArticletitle() {
@@ -106,6 +109,14 @@ public class Article implements Serializable {
         this.articlecontents = articlecontents;
     }
 
+    public String getArticlecontentshtml() {
+        return articlecontentshtml;
+    }
+
+    public void setArticlecontentshtml(String articlecontentshtml) {
+        this.articlecontentshtml = articlecontentshtml;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -113,14 +124,15 @@ public class Article implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", articleid=").append(articleid);
-        sb.append(", articlesid=").append(articlesid);
-        sb.append(", articleuid=").append(articleuid);
+        sb.append(", articlesessionid=").append(articlesessionid);
+        sb.append(", articleuserid=").append(articleuserid);
         sb.append(", articletitle=").append(articletitle);
         sb.append(", articletime=").append(articletime);
         sb.append(", articleclickcount=").append(articleclickcount);
         sb.append(", articleconsentient=").append(articleconsentient);
         sb.append(", articlelastcommenttime=").append(articlelastcommenttime);
         sb.append(", articlecontents=").append(articlecontents);
+        sb.append(", articlecontentshtml=").append(articlecontentshtml);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
