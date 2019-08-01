@@ -23,7 +23,7 @@ import java.util.List;
  **/
 @Api(tags = "UsersController", description = "Users information api")
 @Controller
-@RequestMapping(value = "users")
+@RequestMapping(value = "/web/users")
 public class UserController {
     @Autowired
     private UserService userService;

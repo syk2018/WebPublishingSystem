@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @Api(tags = "FileController", description = "File controller api")
 @Controller
-@RequestMapping(value = "/file")
+@RequestMapping(value = "/web/file")
 public class FileController {
 
     @Autowired

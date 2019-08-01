@@ -19,7 +19,7 @@ import java.util.List;
  **/
 @Api(tags = "ArticleController", description = "Article controller api")
 @Controller
-@RequestMapping(value = "/article")
+@RequestMapping(value = "/web/article")
 public class ArticleController {
 
     @Autowired

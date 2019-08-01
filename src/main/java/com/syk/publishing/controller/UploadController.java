@@ -22,7 +22,7 @@ import java.util.List;
  **/
 @Api(tags = "UploadController",description = "Upload api")
 @RestController
-@RequestMapping(value = "/uploader")
+@RequestMapping(value = "/web/uploader")
 public class UploadController {
 
     @Autowired
