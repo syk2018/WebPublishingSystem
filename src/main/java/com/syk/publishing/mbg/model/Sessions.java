@@ -10,6 +10,8 @@ public class Sessions implements Serializable {
     @ApiModelProperty(value = "session_Name")
     private String sessionname;
 
+    private Long sessionImgId;
+
     private static final long serialVersionUID = 1L;
 
     public Long getSessionId() {
@@ -28,6 +30,14 @@ public class Sessions implements Serializable {
         this.sessionname = sessionname;
     }
 
+    public Long getSessionImgId() {
+        return sessionImgId;
+    }
+
+    public void setSessionImgId(Long sessionImgId) {
+        this.sessionImgId = sessionImgId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -36,6 +46,7 @@ public class Sessions implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", sessionId=").append(sessionId);
         sb.append(", sessionname=").append(sessionname);
+        sb.append(", sessionImgId=").append(sessionImgId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

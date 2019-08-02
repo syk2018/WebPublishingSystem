@@ -233,6 +233,66 @@ public class SessionsExample {
             addCriterion("sessionName not between", value1, value2, "sessionname");
             return (Criteria) this;
         }
+
+        public Criteria andSessionImgIdIsNull() {
+            addCriterion("session_img_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdIsNotNull() {
+            addCriterion("session_img_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdEqualTo(Long value) {
+            addCriterion("session_img_id =", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdNotEqualTo(Long value) {
+            addCriterion("session_img_id <>", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdGreaterThan(Long value) {
+            addCriterion("session_img_id >", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("session_img_id >=", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdLessThan(Long value) {
+            addCriterion("session_img_id <", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdLessThanOrEqualTo(Long value) {
+            addCriterion("session_img_id <=", value, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdIn(List<Long> values) {
+            addCriterion("session_img_id in", values, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdNotIn(List<Long> values) {
+            addCriterion("session_img_id not in", values, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdBetween(Long value1, Long value2) {
+            addCriterion("session_img_id between", value1, value2, "sessionImgId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSessionImgIdNotBetween(Long value1, Long value2) {
+            addCriterion("session_img_id not between", value1, value2, "sessionImgId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -14,9 +14,6 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "article_ ID of users")
     private Long articleuserid;
 
-    @ApiModelProperty(value = "artcle_Title")
-    private String articletitle;
-
     @ApiModelProperty(value = "article_Publish Time")
     private Date articletime;
 
@@ -29,8 +26,8 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "article_Lastest_Comment_Time")
     private Date articlelastcommenttime;
 
-    @ApiModelProperty(value = "article_Contents")
-    private String articlecontents;
+    @ApiModelProperty(value = "artcle_Title")
+    private String articletitle;
 
     @ApiModelProperty(value = "article_Contents_With_HTML")
     private String articlecontentshtml;
@@ -59,14 +56,6 @@ public class Article implements Serializable {
 
     public void setArticleuserid(Long articleuserid) {
         this.articleuserid = articleuserid;
-    }
-
-    public String getArticletitle() {
-        return articletitle;
-    }
-
-    public void setArticletitle(String articletitle) {
-        this.articletitle = articletitle;
     }
 
     public Date getArticletime() {
@@ -101,12 +90,12 @@ public class Article implements Serializable {
         this.articlelastcommenttime = articlelastcommenttime;
     }
 
-    public String getArticlecontents() {
-        return articlecontents;
+    public String getArticletitle() {
+        return articletitle;
     }
 
-    public void setArticlecontents(String articlecontents) {
-        this.articlecontents = articlecontents;
+    public void setArticletitle(String articletitle) {
+        this.articletitle = articletitle;
     }
 
     public String getArticlecontentshtml() {
@@ -126,12 +115,11 @@ public class Article implements Serializable {
         sb.append(", articleid=").append(articleid);
         sb.append(", articlesessionid=").append(articlesessionid);
         sb.append(", articleuserid=").append(articleuserid);
-        sb.append(", articletitle=").append(articletitle);
         sb.append(", articletime=").append(articletime);
         sb.append(", articleclickcount=").append(articleclickcount);
         sb.append(", articleconsentient=").append(articleconsentient);
         sb.append(", articlelastcommenttime=").append(articlelastcommenttime);
-        sb.append(", articlecontents=").append(articlecontents);
+        sb.append(", articletitle=").append(articletitle);
         sb.append(", articlecontentshtml=").append(articlecontentshtml);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

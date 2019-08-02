@@ -5,14 +5,13 @@
     <id column="articleId" jdbcType="BIGINT" property="articleid" />
     <result column="articleSessionId" jdbcType="BIGINT" property="articlesessionid" />
     <result column="articleUserId" jdbcType="BIGINT" property="articleuserid" />
-    <result column="articleTitle" jdbcType="VARCHAR" property="articletitle" />
     <result column="articleTime" jdbcType="TIMESTAMP" property="articletime" />
     <result column="articleClickCount" jdbcType="INTEGER" property="articleclickcount" />
     <result column="articleConsentient" jdbcType="INTEGER" property="articleconsentient" />
     <result column="articleLastCommentTime" jdbcType="TIMESTAMP" property="articlelastcommenttime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.syk.publishing.mbg.model.Article">
-    <result column="articleContents" jdbcType="LONGVARCHAR" property="articlecontents" />
+    <result column="articleTitle" jdbcType="LONGVARCHAR" property="articletitle" />
     <result column="articleContentsHTML" jdbcType="LONGVARCHAR" property="articlecontentshtml" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,11 +73,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    articleId, articleSessionId, articleUserId, articleTitle, articleTime, articleClickCount, 
-    articleConsentient, articleLastCommentTime
+    articleId, articleSessionId, articleUserId, articleTime, articleClickCount, articleConsentient, 
+    articleLastCommentTime
   </sql>
   <sql id="Blob_Column_List">
-    articleContents, articleContentsHTML
+    articleTitle, articleContentsHTML
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.syk.publishing.mbg.model.ArticleExample" resultMap="ResultMapWithBLOBs">
     select
@@ -130,15 +129,13 @@
   </delete>
   <insert id="insert" parameterType="com.syk.publishing.mbg.model.Article">
     insert into Article (articleId, articleSessionId, articleUserId, 
-      articleTitle, articleTime, articleClickCount, 
-      articleConsentient, articleLastCommentTime, 
-      articleContents, articleContentsHTML
-      )
+      articleTime, articleClickCount, articleConsentient, 
+      articleLastCommentTime, articleTitle, 
+      articleContentsHTML)
     values (#{articleid,jdbcType=BIGINT}, #{articlesessionid,jdbcType=BIGINT}, #{articleuserid,jdbcType=BIGINT}, 
-      #{articletitle,jdbcType=VARCHAR}, #{articletime,jdbcType=TIMESTAMP}, #{articleclickcount,jdbcType=INTEGER}, 
-      #{articleconsentient,jdbcType=INTEGER}, #{articlelastcommenttime,jdbcType=TIMESTAMP}, 
-      #{articlecontents,jdbcType=LONGVARCHAR}, #{articlecontentshtml,jdbcType=LONGVARCHAR}
-      )
+      #{articletime,jdbcType=TIMESTAMP}, #{articleclickcount,jdbcType=INTEGER}, #{articleconsentient,jdbcType=INTEGER}, 
+      #{articlelastcommenttime,jdbcType=TIMESTAMP}, #{articletitle,jdbcType=LONGVARCHAR}, 
+      #{articlecontentshtml,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.syk.publishing.mbg.model.Article">
     insert into Article
@@ -152,9 +149,6 @@
       <if test="articleuserid != null">
         articleUserId,
       </if>
-      <if test="articletitle != null">
-        articleTitle,
-      </if>
       <if test="articletime != null">
         articleTime,
       </if>
@@ -167,8 +161,8 @@
       <if test="articlelastcommenttime != null">
         articleLastCommentTime,
       </if>
-      <if test="articlecontents != null">
-        articleContents,
+      <if test="articletitle != null">
+        articleTitle,
       </if>
       <if test="articlecontentshtml != null">
         articleContentsHTML,
@@ -184,9 +178,6 @@
       <if test="articleuserid != null">
         #{articleuserid,jdbcType=BIGINT},
       </if>
-      <if test="articletitle != null">
-        #{articletitle,jdbcType=VARCHAR},
-      </if>
       <if test="articletime != null">
         #{articletime,jdbcType=TIMESTAMP},
       </if>
@@ -199,8 +190,8 @@
       <if test="articlelastcommenttime != null">
         #{articlelastcommenttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="articlecontents != null">
-        #{articlecontents,jdbcType=LONGVARCHAR},
+      <if test="articletitle != null">
+        #{articletitle,jdbcType=LONGVARCHAR},
       </if>
       <if test="articlecontentshtml != null">
         #{articlecontentshtml,jdbcType=LONGVARCHAR},
@@ -225,9 +216,6 @@
       <if test="record.articleuserid != null">
         articleUserId = #{record.articleuserid,jdbcType=BIGINT},
       </if>
-      <if test="record.articletitle != null">
-        articleTitle = #{record.articletitle,jdbcType=VARCHAR},
-      </if>
       <if test="record.articletime != null">
         articleTime = #{record.articletime,jdbcType=TIMESTAMP},
       </if>
@@ -240,8 +228,8 @@
       <if test="record.articlelastcommenttime != null">
         articleLastCommentTime = #{record.articlelastcommenttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.articlecontents != null">
-        articleContents = #{record.articlecontents,jdbcType=LONGVARCHAR},
+      <if test="record.articletitle != null">
+        articleTitle = #{record.articletitle,jdbcType=LONGVARCHAR},
       </if>
       <if test="record.articlecontentshtml != null">
         articleContentsHTML = #{record.articlecontentshtml,jdbcType=LONGVARCHAR},
@@ -256,12 +244,11 @@
     set articleId = #{record.articleid,jdbcType=BIGINT},
       articleSessionId = #{record.articlesessionid,jdbcType=BIGINT},
       articleUserId = #{record.articleuserid,jdbcType=BIGINT},
-      articleTitle = #{record.articletitle,jdbcType=VARCHAR},
       articleTime = #{record.articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{record.articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{record.articleconsentient,jdbcType=INTEGER},
       articleLastCommentTime = #{record.articlelastcommenttime,jdbcType=TIMESTAMP},
-      articleContents = #{record.articlecontents,jdbcType=LONGVARCHAR},
+      articleTitle = #{record.articletitle,jdbcType=LONGVARCHAR},
       articleContentsHTML = #{record.articlecontentshtml,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +259,6 @@
     set articleId = #{record.articleid,jdbcType=BIGINT},
       articleSessionId = #{record.articlesessionid,jdbcType=BIGINT},
       articleUserId = #{record.articleuserid,jdbcType=BIGINT},
-      articleTitle = #{record.articletitle,jdbcType=VARCHAR},
       articleTime = #{record.articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{record.articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{record.articleconsentient,jdbcType=INTEGER},
@@ -290,9 +276,6 @@
       <if test="articleuserid != null">
         articleUserId = #{articleuserid,jdbcType=BIGINT},
       </if>
-      <if test="articletitle != null">
-        articleTitle = #{articletitle,jdbcType=VARCHAR},
-      </if>
       <if test="articletime != null">
         articleTime = #{articletime,jdbcType=TIMESTAMP},
       </if>
@@ -305,8 +288,8 @@
       <if test="articlelastcommenttime != null">
         articleLastCommentTime = #{articlelastcommenttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="articlecontents != null">
-        articleContents = #{articlecontents,jdbcType=LONGVARCHAR},
+      <if test="articletitle != null">
+        articleTitle = #{articletitle,jdbcType=LONGVARCHAR},
       </if>
       <if test="articlecontentshtml != null">
         articleContentsHTML = #{articlecontentshtml,jdbcType=LONGVARCHAR},
@@ -318,12 +301,11 @@
     update Article
     set articleSessionId = #{articlesessionid,jdbcType=BIGINT},
       articleUserId = #{articleuserid,jdbcType=BIGINT},
-      articleTitle = #{articletitle,jdbcType=VARCHAR},
       articleTime = #{articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{articleconsentient,jdbcType=INTEGER},
       articleLastCommentTime = #{articlelastcommenttime,jdbcType=TIMESTAMP},
-      articleContents = #{articlecontents,jdbcType=LONGVARCHAR},
+      articleTitle = #{articletitle,jdbcType=LONGVARCHAR},
       articleContentsHTML = #{articlecontentshtml,jdbcType=LONGVARCHAR}
     where articleId = #{articleid,jdbcType=BIGINT}
   </update>
@@ -331,7 +313,6 @@
     update Article
     set articleSessionId = #{articlesessionid,jdbcType=BIGINT},
       articleUserId = #{articleuserid,jdbcType=BIGINT},
-      articleTitle = #{articletitle,jdbcType=VARCHAR},
       articleTime = #{articletime,jdbcType=TIMESTAMP},
       articleClickCount = #{articleclickcount,jdbcType=INTEGER},
       articleConsentient = #{articleconsentient,jdbcType=INTEGER},
