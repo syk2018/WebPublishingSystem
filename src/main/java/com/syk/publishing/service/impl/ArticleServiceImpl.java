@@ -2,12 +2,15 @@ package com.syk.publishing.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.syk.publishing.mbg.mapper.ArticleMapper;
+import com.syk.publishing.mbg.mapper.UsersMapper;
 import com.syk.publishing.mbg.model.Article;
 import com.syk.publishing.mbg.model.ArticleExample;
+import com.syk.publishing.mbg.model.Users;
 import com.syk.publishing.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +33,22 @@ public class ArticleServiceImpl implements ArticleService {
         PageHelper.startPage(pageNum,pageSize);
         List<Article> list = articleMapper.selectByExampleWithBLOBs(articleExample);
         return list;
+    }
+
+    @Override
+    public List<Article> listArticleBySessions(Long id) {
+        ArticleExample articleExample = new ArticleExample();
+        articleExample.setOrderByClause("articleId DESC");
+        articleExample.createCriteria().andArticlesessionidEqualTo(id);
+        return articleMapper.selectByExampleWithBLOBs(articleExample);
+    }
+
+    @Override
+    public List<Article> listArticleByUserId(Long id) {
+        ArticleExample articleExample = new ArticleExample();
+        articleExample.setOrderByClause("articleId DESC");
+        articleExample.createCriteria().andArticleuseridEqualTo(id);
+        return articleMapper.selectByExampleWithBLOBs(articleExample);
     }
 
     @Override

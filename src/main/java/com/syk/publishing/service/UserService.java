@@ -11,7 +11,7 @@ public interface UserService {
 
     int createUser(Users user);
 
-    int updateUser(Long id,Users user);
+    int updateUserWithoutPwd(Long id,Users user);
 
     int deleteUser(Long id);
 

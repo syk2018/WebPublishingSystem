@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +49,21 @@ public class ArticleController {
                                                            @RequestParam("pageSize") int pageSize) {
         List<Article> result = articleService.listArticleBySessions(id,pageNum,pageSize);
         return CommonResult.success(CommonPage.restPage(result));
+    }
+
+    @ApiOperation("List articles by user id")
+    @GetMapping(value = "listByUserId")
+    @ResponseBody
+    public CommonResult<List<Article>> listByUserId(@RequestParam("id") Long id) {
+        List<Article> temp = articleService.listArticleByUserId(id);
+        List<Article> result = new ArrayList<Article>();
+        for(int i = 0; i < 5; i++) {
+            if(i == temp.size()) {
+                break;
+            }
+            result.add(i,temp.get(i));
+        }
+        return CommonResult.success(result);
     }
 
     @ApiOperation("List all articles")

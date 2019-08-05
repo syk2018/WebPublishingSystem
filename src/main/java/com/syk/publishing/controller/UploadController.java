@@ -42,6 +42,10 @@ public class UploadController {
         else {
             List<File> result = uploadService.saveFile(files);
             fileService.addFiles(result);
+            for(int i = 0; i < result.size(); i++) {
+                File temp = fileService.getFileByName(result.get(i).getFilename()).get(0);
+                result.get(i).setFileId(temp.getFileId());
+            }
             return CommonResult.success(result);
         }
     }

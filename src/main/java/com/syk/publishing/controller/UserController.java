@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,5 +70,26 @@ public class UserController {
             List<Users> temp = userService.getUserByUsername(user);
             return CommonResult.success(temp);
         }
+    }
+
+    @ApiOperation("Update")
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult update(@RequestBody Users user) {
+        this.userService.updateUserWithoutPwd(user.getUserId(),user);
+        return CommonResult.success(this.userService.getUserById(user.getUserId()),"success");
+    }
+
+    @ApiOperation("GetAuthors")
+    @PostMapping(value = "getAuthors")
+    @ResponseBody
+    public CommonResult<List<String>> getAuthors(@RequestBody List<Long> userId) {
+
+        List<String> result = new ArrayList<String>();
+        for(int i = 0; i < userId.size(); i++) {
+            result.add(i,userService.getUserById(userId.get(i)).getUsernickname());
+        }
+
+        return CommonResult.success(result);
     }
 }

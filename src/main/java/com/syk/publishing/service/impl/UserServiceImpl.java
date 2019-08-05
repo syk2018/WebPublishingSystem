@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUser(Long id, Users user) {
-        user.setUserId(id);
-
+    public int updateUserWithoutPwd(Long id, Users user) {
+        Users temp = this.usersMapper.selectByPrimaryKey(id);
+        user.setUserpwd(temp.getUserpwd());
         return usersMapper.updateByPrimaryKey(user);
     }
 
